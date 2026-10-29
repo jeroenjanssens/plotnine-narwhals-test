@@ -67,6 +67,7 @@ def _():
         I,
         labs,
         scale_fill_brewer,
+        theme,
         theme_minimal,
     )
 
@@ -94,6 +95,7 @@ def _():
         plotnine,
         scale_fill_brewer,
         sys,
+        theme,
         theme_minimal,
     )
 
@@ -193,12 +195,12 @@ def _(mo):
 
 
 @app.cell
-def _(aes, diamonds, geom_bar, ggplot, labs, pl):
+def _(aes, diamonds, geom_bar, ggplot, labs, pl, theme):
     as_enum = (
         ggplot(diamonds, aes("clarity", fill="cut"))
         + geom_bar()
         + labs(title="cut is a polars Enum (ordered)")
-    ).draw()
+    )
 
     as_categorical = (
         ggplot(
@@ -207,13 +209,9 @@ def _(aes, diamonds, geom_bar, ggplot, labs, pl):
         )
         + geom_bar()
         + labs(title="cut is a polars Categorical (unordered)")
-    ).draw()
-    return as_categorical, as_enum
+    )
 
-
-@app.cell
-def _(as_categorical, as_enum, mo):
-    mo.hstack([as_enum, as_categorical])
+    ((as_enum | as_categorical) & theme(figure_size=(11, 4))).draw()
     return
 
 
@@ -267,7 +265,9 @@ def _(mo):
     ## 4. Interactive
 
     The plot below reacts to the controls. All the computations happen
-    on the polars dataframe.
+    on the polars dataframe. (In the static Jupyter version of this
+    notebook, the controls are not shown; the plot uses 30 bins and is
+    filled by `cut`.)
     """)
     return
 

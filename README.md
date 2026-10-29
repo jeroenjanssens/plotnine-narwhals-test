@@ -13,7 +13,21 @@ that uses [narwhals](https://narwhals-dev.github.io/narwhals/) internally, so th
   `Categorical` as an unordered one;
 - densities, violins and linear smooths no longer need statsmodels.
 
+## View it without running it
+
+[`notebook.ipynb`](notebook.ipynb) is a Jupyter version of the marimo
+notebook, including all its outputs, which GitHub renders directly. It is
+generated from `notebook.py` with:
+
+```bash
+uv run --with nbformat marimo export ipynb notebook.py -o notebook.ipynb \
+    --include-outputs --sort top-down -f
+```
+
 ## Run it on molab
+
+(This requires a molab account.)
+
 
 [![Open in molab](https://molab.marimo.io/molab-shield.svg)](https://molab.marimo.io/github/jeroenjanssens/plotnine-narwhals-test/blob/main/notebook.py)
 
