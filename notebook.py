@@ -34,6 +34,11 @@ def _(mo):
       expressions keep working;
     - polars `Enum` columns are treated as **ordered** categoricals;
     - densities, violins and linear smooths no longer need statsmodels.
+
+    The code is in the `narwhals-optional-pandas` branch of
+    [my fork of plotnine](https://github.com/jeroenjanssens/plotnine/tree/narwhals-optional-pandas)
+    and the `optional-pandas` branch of
+    [my fork of mizani](https://github.com/jeroenjanssens/mizani/tree/optional-pandas).
     """)
     return
 
@@ -265,9 +270,7 @@ def _(mo):
     ## 4. Interactive
 
     The plot below reacts to the controls. All the computations happen
-    on the polars dataframe. (In the static Jupyter version of this
-    notebook, the controls are not shown; the plot uses 30 bins and is
-    filled by `cut`.)
+    on the polars dataframe.
     """)
     return
 

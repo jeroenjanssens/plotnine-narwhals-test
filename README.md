@@ -16,12 +16,12 @@ that uses [narwhals](https://narwhals-dev.github.io/narwhals/) internally, so th
 ## View it without running it
 
 [`notebook.ipynb`](notebook.ipynb) is a Jupyter version of the marimo
-notebook, including all its outputs, which GitHub renders directly. It is
+notebook, including all its outputs, which GitHub renders directly. It leaves
+out the interactive section, because its controls only work in marimo. It is
 generated from `notebook.py` with:
 
 ```bash
-uv run --with nbformat marimo export ipynb notebook.py -o notebook.ipynb \
-    --include-outputs --sort top-down -f
+uv run --with nbformat python export_ipynb.py
 ```
 
 ## Run it on molab
@@ -53,12 +53,22 @@ Neither environment contains pandas:
 uv run python -c "import plotnine, polars; import sys; print('pandas' in sys.modules)"
 ```
 
-## The wheels
+## The code
 
-The `wheels/` directory has development builds of the two packages, which are
-not on PyPI yet:
+The changes are in two forks:
 
-- `plotnine-0.16.0+narwhals`: the `narwhals` branch of plotnine, with pandas
-  and statsmodels moved to an optional `pandas` extra;
-- `mizani-0.14.7+optionalpandas`: the `optional-pandas` branch of mizani, in
-  which pandas is an optional dependency.
+- plotnine: the
+  [`narwhals-optional-pandas`](https://github.com/jeroenjanssens/plotnine/tree/narwhals-optional-pandas)
+  branch of [jeroenjanssens/plotnine](https://github.com/jeroenjanssens/plotnine);
+- mizani: the
+  [`optional-pandas`](https://github.com/jeroenjanssens/mizani/tree/optional-pandas)
+  branch of [jeroenjanssens/mizani](https://github.com/jeroenjanssens/mizani),
+  in which pandas is an optional dependency (plotnine uses mizani for its
+  scales).
+
+The `wheels/` directory has builds of these branches, because they are not on
+PyPI:
+
+- `plotnine-0.16.0+narwhals`, with pandas and statsmodels moved to an optional
+  `pandas` extra;
+- `mizani-0.14.7+optionalpandas`.
